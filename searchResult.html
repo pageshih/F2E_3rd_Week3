@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><%- title %></title>
+    <title>Hey!BUS 巴士助理</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
       rel="stylesheet">
@@ -62,7 +62,41 @@
       </div>
     </nav>
 
-    <%- contents %>
+    <section class="bg-primary flex-grow-1">
+    <div class="bg-light rounded-top-lg py-6 px-4 h-100">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <!-- location -->
+            <p class="text-primary"><span class="material-icons fs-2 align-text-bottom me-1">
+                location_on
+                </span>台中市</p>
+            <!-- switch direction -->
+            <button class="btn btn-outline-gray1 py-1 px-3 fs-5"><span class="material-icons align-bottom fs-2 me-1">
+                swap_horiz
+                </span>轉向</button>
+        </div>
+        <ul id="routeList">
+            <li class="card py-6 px-3">
+                <h2 class="text-primary mb-1">21</h2>
+                <p>臺中刑務所演武場<span class="material-icons-outlined fs-2 text-info mx-2 align-text-bottom">
+                    trending_flat
+                    </span>三貴城</p>
+            </li>
+        </ul>
+        <div>
+        <div class="input-group mb-4 position-relative">
+            <input type="text" class="form-control rounded" placeholder="請輸入公車路線號碼/關鍵字">
+            <button class="btn text-secondary px-3 py-7 position-absolute end-0 h-100" data-bs-toggle="dropdown" aria-expanded="false"><span class="material-icons align-bottom">
+              expand_more
+            </span></button>
+            <!-- history dropdown menu -->
+            <ul class="dropdown-menu w-100 rounded-1" id="searchHistory">
+              <li><button type="button" class="dropdown-item">a</button></li>
+            </ul>
+        </div>
+        <button type="button" class="btn bg-primary w-100 mb-4 text-white fs-1" id="searchBtn">查詢</button>
+    </div>
+    </div>
+</section>
 
   </div>
 

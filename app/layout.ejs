@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%- title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="./assets/style/all.css">
+  </head>
+
+  <body>
+    <div class="d-flex flex-column vh-100">
+    <nav class="navbar navbar-primary bg-primary d-block" id="navbar">
+      <button class="btn" type="button" data-bs-toggle="offcanvas" href="#navList" role="button" aria-controls="navList"><i class="fas fa-bars text-white"></i></button>
+      <h1 class="flex-grow-1 d-flex justify-content-center">
+      <img class="z-index-top" src="./assets/images/Logo.svg" alt="巴士助理Logo">
+    </h1>
+    <!-- nav -->
+      <div class="offcanvas offcanvas-start nav-list" tabindex="-1" id="navList" aria-labelledby="navListLabel" data-bs-backdrop="false">
+        <div class="offcanvas-header">
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column justify-content-between">
+          <ul>
+          <li class="card nav-list-item">
+            <span class="material-icons-outlined ">
+              translate
+              </span>
+              <a href="#" class="stretched-link"></a>
+              <p>語系切換</p>
+          </li>
+          <li class="card nav-list-item">
+            <span class="material-icons ">
+              monetization_on
+              </span>
+              <a href="#" class="stretched-link"></a>
+              <p>票價查詢</p>
+          </li>
+          <li class="card nav-list-item">
+            <span class="material-icons-outlined ">
+              tram
+              </span>
+              <a href="#" class="stretched-link"></a>
+              <p>捷運站點</p>
+          </li>
+          <li class="card nav-list-item">
+            <span class="material-icons-outlined ">
+              directions_bike
+              </span>
+              <a href="#" class="stretched-link"></a>
+              <p>找自行車</p>
+          </li>
+        </ul>
+        <p class="text-gray500 fs-5">HeyBus © 2021. Design by jümanji</p>
+        </div>
+      </div>
+    </nav>
+
+    <%- contents %>
+
+  </div>
+
+    <script src="./assets/js/vendors.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.2.0/sha.js"></script>
+    <script src="./assets/js/all.js"></script>
+  </body>
+
+</html>

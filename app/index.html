@@ -1,0 +1,101 @@
+---
+title: Hey!BUS 巴士助理
+layout: ./app/layout.ejs
+engine: ejs
+current: index
+---
+
+<section class="bg-primary heading" id="heading">
+  <div class="material-icons heading-icon">directions_bus</div>
+  <div class="bg-secondary text-center rounded-top-lg pt-4">
+    <button class="btn bus-btn-active" id="cityBus"><span class="material-icons me-1">
+      directions_bus
+      </span>市區公車</button>
+      <button class="btn" id="highWayBus"><span class="material-icons me-1">
+        directions_bus
+        </span>公路客運</button>
+  </div>
+</section>
+<section class="bg-secondary pt-4 flex-grow-1" id="contentArea">
+  <div class="shadow-top bg-light rounded-top-lg px-3 py-4 h-100">
+    <!-- 查詢結果 -->
+    <div class="d-none" id="searchResult">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <!-- location -->
+        <button type="button" class="btn p-0 text-primary" id="relocateBtn"><span class="material-icons fs-2 align-text-bottom me-1">
+            location_on
+            </span><span id="located">台中市</span></button>
+        <!-- switch direction -->
+        <select class="btn btn-outline-gray1 py-1 px-1 fs-5 material-icons align-bottom" id="direction">
+          <option value="">全部</option>
+          <option value="0">去程</option>
+          <option value="1">返程</option>
+          <option value="2">來回</option>
+          </select>
+            
+    </div>
+    <ul class="pb-8 mb-5" id="routeList">
+        <!-- <li class="card py-6 px-3">
+            <h2 class="text-primary mb-1">21</h2>
+            <p>臺中刑務所演武場<span class="material-icons-outlined fs-2 text-info mx-2 align-text-bottom">
+                trending_flat
+                </span>三貴城</p>
+        </li> -->
+    </ul>
+    </div>
+    <!-- 查詢輸入表格/首頁表格 -->
+    <div class="d-flex flex-column justify-content-between h-100" id="form">
+      <div>
+        <div id="invisibleElement">
+          
+          <p class="overflow-hidden text-info-light fs-5 mb-4">
+            <span class="material-icons fs-2 me-1 text-info align-text-bottom">
+              volume_up
+              </span><span class="marquee" id="news"></span>
+          </p>
+         
+          <div class="location-menu input-group mb-4 material-icons" id="locationMenu">
+            <select id="location" class="form-control text-gray800">
+              <!-- <option value="" disabled selected hidden>請選擇縣/市</option> -->
+            </select>
+
+            <!-- <button class="btn bg-secondary text-white px-3 py-7" data-bs-toggle="modal" data-bs-target="#getLocation"><span class="material-icons align-bottom">
+              location_on
+              </span></button> -->
+          </div>
+          <!-- get location modal -->
+          <!-- <div class="modal" id="getLocation"  tabindex="-1" aria-labelledby="LgetLocationLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered w-75 mx-auto">
+              <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="text-primary text-center mb-2"><span class="material-icons">
+                    gps_fixed
+                    </span></div>
+                    <p class="text-center">請確認手機設定是否已開啟GPS定位服務</p>
+                </div>
+                <div class="modal-footer p-0">
+                  <botton type="button" class="w-100 m-0 py-2 text-primary fs-2 fw-bold text-center">前往設置</botton>
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+          <div class="input-group mb-4 position-relative">
+            <input type="text" class="form-control rounded" placeholder="請輸入公車路線號碼/關鍵字" id="keyWord">
+            <button class="btn text-secondary px-3 py-7 position-absolute end-0 h-100" data-bs-toggle="dropdown" aria-expanded="false"><span class="material-icons align-bottom">
+              expand_more
+            </span></button>
+            <!-- history dropdown menu -->
+            <ul class="dropdown-menu w-100 rounded-1" id="searchHistory">
+              <li><button type="button" class="dropdown-item">a</button></li>
+            </ul>
+        </div>
+      </div>
+      <button type="button" class="btn bg-primary w-100 mb-4 text-white fs-1" id="searchBtn">查詢</button>
+    </div>
+  </div>
+</section>
+

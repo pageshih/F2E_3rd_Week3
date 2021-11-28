@@ -1,0 +1,59 @@
+
+.heading{
+  position: relative;
+  padding-top: 45px;
+  &-icon{
+    font-size: 96px;
+    color: $secondary;
+    position: absolute;
+    top:-40px;
+    left: 40px;
+  }
+  button{
+    border-radius: 20px;
+    color: $primary;
+    span{
+      vertical-align: bottom;
+    }
+  }
+  .bus-btn-active{
+    background-color: $white;
+    box-shadow: $box-shadow;
+    color: $gray-800;
+  }
+}
+
+.location-menu{
+  // .depart{
+  //   flex-basis: 48%;
+  // }
+  // .arrive{
+  //   flex-basis: 52%;
+  // }
+  &::after{
+    content:"location_on";
+    position: absolute;
+    right: 0;
+    height: 100%;
+    border-radius: 0 $border-radius $border-radius 0;
+    padding: 16px 12px;
+    color: $white;
+    background-color: $secondary;
+    pointer-events: none;
+    z-index:3;
+    }
+}
+
+  // .location-menu-arrow::before{
+  //   content:"trending_flat";
+  //   font-size: 16px;
+  //   position: absolute;
+  //   left: calc(48% - 10px);
+  //   top: calc(50% - 8px);
+  //   color: $secondary;
+  //   background-color: #fff;
+  //   border-radius: 50rem;
+  //   padding: 1px;
+  //   box-shadow: 0 0 2px $secondary;
+  //   z-index:3;
+  // }

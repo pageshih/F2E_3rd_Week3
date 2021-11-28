@@ -83,6 +83,8 @@ function domControl(data){
     //更改市區公車的縣市選項為一個縣市範圍
     search["location"].options[search["location"].selectedIndex].textContent = "請選擇縣/市";
     layout["locationMenu"].classList.remove("location-menu-arrow");
+    search["location"].innerHTML = `<option value="" disabled selected hidden>請選擇縣/市</option>${cityStr}`;
+
   });
   //監聽公路客運的按鈕
   search["highwayBtn"].addEventListener("click",(e)=>{
@@ -186,13 +188,20 @@ function getBusRouteData(){
   //設定$filter 條件
   let filterRule = "";
   if(searchValue["keywords"]){
-    //如果有填寫關鍵字，加入篩選起迄站、路線名稱、headsign
-    filterRule += filterRules(searchValue["keywords"]) + `contains(RouteName/Zh_tw, '${searchValue["keywords"]}') or SubRoutes/any(d: contains(d/Headsign, '${searchValue["keywords"]}'))`;
+    //如果有填寫關鍵字，加入篩選路線名稱、headsign
+    filterRule += `contains(RouteName/Zh_tw, '${searchValue["keywords"]}') or SubRoutes/any(d: contains(d/Headsign, '${searchValue["keywords"]}'))`;
   }
   //先確定是否為市區公車
   if(searchValue["isCityBus"] && searchValue["city"]){
+    let url = `https://ptx.transportdata.tw/MOTC/v2/Bus/Route/City/${searchValue.city}?$format=JSON`;
+    //設定filter條件
+    if(filterRule !== ""){
+      //起迄站的篩選只有市區公車需要
+      filterRule += " or " + filterRules(searchValue["keywords"]);
+      url += `&$filter=${filterRule}`;
+    }
     //抓資料
-      axios.get( `https://ptx.transportdata.tw/MOTC/v2/Bus/Route/City/${searchValue.city}?$filter=${filterRule}&&$format=JSON` ,
+      axios.get( url ,
          {
             headers: getAuthorizationHeader()
          })
@@ -208,8 +217,11 @@ function getBusRouteData(){
         console.log(error);
       }); 
     }else if(!searchValue["isCityBus"] && searchValue["highwayOperatorName"]){
-      //設定$filter 條件
-      filterRule += ` and Operators/any(d: d/OperatorName/Zh_tw eq '${searchValue["highwayOperatorName"]}')`;
+      //設定filter條件
+      if(filterRule !== ""){
+        filterRule += " and ";
+      }
+      filterRule += `Operators/any(d: d/OperatorName/Zh_tw eq '${searchValue["highwayOperatorName"]}')`;
       // 抓資料
       axios.get( `https://ptx.transportdata.tw/MOTC/v2/Bus/Route/InterCity?$filter=${filterRule}&$format=JSON` ,
       {
@@ -217,12 +229,11 @@ function getBusRouteData(){
       })
       .then((res)=>{
         let highwayData = res.data;
-       console.log(highwayData);
-        // drawBusRouteList(highwayData);
-        //   //選擇方向
-        // search["direction"].addEventListener("change",(e)=>{
-        //   drawBusRouteList(highwayData, e.target.value);
-        // });
+        drawBusRouteList(highwayData);
+          //選擇方向
+        search["direction"].addEventListener("change",(e)=>{
+          drawBusRouteList(highwayData, e.target.value);
+        });
       })
       .catch((error)=>{
         console.log(error);
@@ -255,12 +266,6 @@ function getHighwayOperatorData(){
           operatorStr += `<option value="${item}">${item}</option>`;
         });
         search["location"].innerHTML = `<option value="" disabled selected hidden>請選擇客運公司</option>${operatorStr}`;
-        console.log(ary);
-        // drawBusRouteList(highwayData);
-        //   //選擇方向
-        // search["direction"].addEventListener("change",(e)=>{
-        //   drawBusRouteList(highwayData, e.target.value);
-        // });
       })
       .catch((error)=>{
         console.log(error);
